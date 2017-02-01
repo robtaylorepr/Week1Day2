@@ -83,10 +83,68 @@ total_budgets = 0
 movies.each {|movie| total_budgets += movie[:budget] }
 puts "Total Budgets = $#{total_budgets}"
 
-# produce an array of each star
+# Make an new arraw of stars
 puts ' '
-puts "produce an array grouped by each star"
-star_list = movies.collect {|movie| movie[:stars]}
-x = star_list.uniq {|star| star}
-puts star_list
-puts "value of x is #{x}"
+puts 'Make a new arrow of stars (MANUALLY ???)'
+puts " disclaimer - Generated MANUALLY"
+puts " !!!!!!!!  just so were clear :-)  "
+stars = [
+  {:star => "Tom Hanks", :movies => ["Forest Gump"]},
+  {:star => "Mark Hamill", :movies => ["Star Wars"]},
+  {:star => "Harrison Ford", :movies => ["Star Wars"]},
+  {:star => "Christian Bale", :movies => ["Batman Begins"]},
+  {:star => "Liam Neeson", :movies => ["Batman Begins"]},
+  {:star => "Kate Winslet", :movies => ["Titanic"]},
+  {:star => "Leonardo DiCaprio", :movies => ["Titanic", "Inception"]},
+  {:star => "JGL", :movies => ["Inception"]}
+]
+puts stars
+
+# Use this new array to output a list of the stars and the movies they appear in to the command line.
+puts ' '
+puts 'Use this new array to output a list of the stars and the movies they appear in to the command line.'
+puts "   (assume: name / list of movies on each line') "
+stars.each {|row|
+  puts "#{row[:star]} in #{row[:movies]}"
+}
+
+# Write a method called starring?
+puts ' '
+puts "Write a method called starring? "
+def starring?(db, star)
+  movie_list = []
+  db.each {|row|
+    if row[:stars].include? star
+      movie_list << row[:title]
+    end
+  }
+  return movie_list
+end
+# test of starring?
+puts "   testing starred"
+puts "   titles = starring?(movies,'Tom Hanks') "
+titles = starring?(movies,'Tom Hanks')
+puts "   #{titles}"
+
+
+# Average Budgets
+puts ' '
+puts "Average Budget"
+number_of_movies = movies.length
+puts "   Number of movies is #{number_of_movies}"
+puts "   Total budgets is $#{total_budgets}"
+average = total_budgets / number_of_movies
+puts "   Average is $#{average}"
+
+# Median Budget
+puts ' '
+puts 'Medium Budget'
+puts "   generate a list with budgets"
+budget_list = []
+movies.each {|row|
+  budget_list << row[:budget]
+}
+puts "   #{budget_list}"
+middle_index = number_of_movies / 2
+puts "   index is #{middle_index}"
+puts "   Medium is #{budget_list[middle_index]}"
